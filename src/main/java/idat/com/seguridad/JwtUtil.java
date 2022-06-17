@@ -24,12 +24,10 @@ public class JwtUtil{
 	@Value("${jwt.secret}")
 	private String secret;
 
-	// Recupera el usuario que se envia en el JWT
 	public String getUsernameFromToken(String token) {
 		return getClaimFromToken(token, Claims::getSubject);
 	}
 
-	// Recupera la fecha de expiración que se envia en el JWT
 	public Date getExpirationDateFromToken(String token) {
 		return getClaimFromToken(token, Claims::getExpiration);
 	}
@@ -38,19 +36,13 @@ public class JwtUtil{
 		final Claims claims = getAllClaimsFromToken(token);
 		return claimsResolver.apply(claims);
 	}
-
-	// Obtiene la clave secreta del JWT
 	private Claims getAllClaimsFromToken(String token) {
 		return Jwts.parser().setSigningKey(secret).parseClaimsJws(token).getBody();
 	}
-
-	// Comprueba si el token a caducado
 	private Boolean isTokenExpired(String token) {
 		final Date expiration = getExpirationDateFromToken(token);
 		return expiration.before(new Date());
 	}
-
-	// Genera un token para el usuario
 	public String generateToken(String user) {
 		Map<String, Object> claims = new HashMap<>();
 		return doGenerateToken(claims, user);

@@ -43,5 +43,11 @@ public class Bodega {
 	public void setDireccion(String direccion) {
 		this.direccion = direccion;
 	}
+	public Producto getProductos() {
+		return productos;
+	}
+	public void setProductos(Producto productos) {
+		this.productos = productos;
+	}
 	
 }

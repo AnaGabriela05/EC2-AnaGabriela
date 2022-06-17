@@ -4,6 +4,7 @@ public class BodegaDTOResponse {
 	private Integer idBodegaDTO;
 	private String nombreDTO;
 	private String direccionDTO;
+	private Integer idProductoDTO;
 	public Integer getIdBodegaDTO() {
 		return idBodegaDTO;
 	}
@@ -21,4 +22,10 @@ public class BodegaDTOResponse {
 	}
 	public void setDireccionDTO(String direccionDTO) {
 		this.direccionDTO = direccionDTO;}
+	public Integer getIdProductoDTO() {
+		return idProductoDTO;
+	}
+	public void setIdProductoDTO(Integer idProductoDTO) {
+		this.idProductoDTO = idProductoDTO;
+	}
 }

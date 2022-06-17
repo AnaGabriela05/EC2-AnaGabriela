@@ -10,19 +10,27 @@ import org.springframework.stereotype.Service;
 import idat.com.dto.BodegaDTORequest;
 import idat.com.dto.BodegaDTOResponse;
 import idat.com.model.Bodega;
+import idat.com.model.Producto;
 import idat.com.repository.BodegaRepositorio;
+import idat.com.repository.ProductoRepositorio;
 @Service
 public class BodegaServicioImpl implements BodegaService {
 	
 	@Autowired
 	BodegaRepositorio repo;
+	
+	@Autowired
+	ProductoRepositorio repoPro;
 	@Override
 	public void guardarBodega(BodegaDTORequest bodega) {
 		// TODO Auto-generated method stub
 		Bodega b = new Bodega();
 		b.setNombre(bodega.getNombreDTO());
 		b.setDireccion(bodega.getDireccionDTO());
+		Optional<Producto> producto = repoPro.findById(bodega.getIdProductoDTO());
+		b.setProductos(producto.get());
 		repo.save(b);
+		
 	}
 
 	@Override
